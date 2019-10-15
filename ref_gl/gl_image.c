@@ -729,7 +729,7 @@ void LoadPNG (const char *name, byte **pic, int *width, int *height)
 		ri.Con_Printf (PRINT_ALL, "Oversized PNG file: %s\n", name);
 		return;
 	}
-	*/
+	
 
 	if (info_ptr->color_type == PNG_COLOR_TYPE_PALETTE)
 	{
@@ -754,6 +754,7 @@ void LoadPNG (const char *name, byte **pic, int *width, int *height)
 
 	if (info_ptr->bit_depth < 8)
         png_set_packing(png_ptr);
+	*/
 
 	if (png_get_gAMA(png_ptr, info_ptr, &file_gamma))
 		png_set_gamma (png_ptr, 2.0, file_gamma);
@@ -1563,7 +1564,7 @@ void LoadJPG (const char *filename, byte **pic, int *width, int *height)
 
 	cinfo.err = jpeg_std_error(&jerr);
 	jpeg_create_decompress(&cinfo);
-	#jpeg_mem_src(&cinfo, rawdata, rawsize);
+	// jpeg_mem_src(&cinfo, rawdata, rawsize); 
 	jpeg_read_header(&cinfo, true);
 	jpeg_start_decompress(&cinfo);
 
