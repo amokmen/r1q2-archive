@@ -663,6 +663,7 @@ void EXPORT PngReadFunc(png_struct *Png, png_bytep buf, png_size_t size)
     PngFileBuffer->Pos+=size;
 }
 
+/*
 void LoadPNG (const char *name, byte **pic, int *width, int *height)
 {
 	unsigned int	i, rowbytes;
@@ -754,7 +755,7 @@ void LoadPNG (const char *name, byte **pic, int *width, int *height)
 
 	if (info_ptr->bit_depth < 8)
         png_set_packing(png_ptr);
-	*/
+	
 
 	if (png_get_gAMA(png_ptr, info_ptr, &file_gamma))
 		png_set_gamma (png_ptr, 2.0, file_gamma);
@@ -778,6 +779,7 @@ void LoadPNG (const char *name, byte **pic, int *width, int *height)
 
 	ri.FS_FreeFile (PngFileBuffer.Buffer);
 }
+*/
 
 /*
 =========================================================
@@ -1523,6 +1525,7 @@ void EXPORT jpg_skip_input_data(j_decompress_ptr cinfo, long num_bytes)
     cinfo->src->bytes_in_buffer -= (size_t) num_bytes;
 }
 
+/*
 void jpeg_mem_src (j_decompress_ptr cinfo, byte *mem, int len)
 {
     cinfo->src = (struct jpeg_source_mgr *)(*cinfo->mem->alloc_small)((j_common_ptr) cinfo, JPOOL_PERMANENT, sizeof(struct jpeg_source_mgr));
@@ -1534,6 +1537,7 @@ void jpeg_mem_src (j_decompress_ptr cinfo, byte *mem, int len)
     cinfo->src->bytes_in_buffer = len;
     cinfo->src->next_input_byte = mem;
 }
+*/
 
 /*
 ==============
@@ -3097,7 +3101,7 @@ image_t	*GL_FindImage (const char *name, const char *basename, imagetype_t type)
 				//png_name[len-2] = 'n';
 				//png_name[len-1] = 'g';
 				*(int *)(png_name + (len-3)) = '\0gnp';
-				LoadPNG (png_name, &pic, &width, &height);
+				// LoadPNG (png_name, &pic, &width, &height);
 			}
 			if (!pic)
 			{
@@ -3134,7 +3138,7 @@ image_t	*GL_FindImage (const char *name, const char *basename, imagetype_t type)
 	}
 	else if (!strcmp(name+len-4, ".png"))
 	{
-		LoadPNG (name, &pic, &width, &height);
+		// LoadPNG (name, &pic, &width, &height);
 		if (!pic)
 			return NULL; // ri.Sys_Error (ERR_DROP, "GL_FindImage: can't load %s", name);
 		image = GL_LoadPic (name, pic, width, height, type, 32);
