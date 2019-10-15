@@ -721,13 +721,15 @@ void LoadPNG (const char *name, byte **pic, int *width, int *height)
 
 	png_read_info(png_ptr, info_ptr);
 
-	#if (info_ptr->height > MAX_TEXTURE_DIMENSIONS)
-	#{
-        #png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-	#	ri.FS_FreeFile (PngFileBuffer.Buffer);
-	#	ri.Con_Printf (PRINT_ALL, "Oversized PNG file: %s\n", name);
-	#	return;
-	#}
+	/*
+	if (info_ptr->height > MAX_TEXTURE_DIMENSIONS)
+	{
+        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+		ri.FS_FreeFile (PngFileBuffer.Buffer);
+		ri.Con_Printf (PRINT_ALL, "Oversized PNG file: %s\n", name);
+		return;
+	}
+	*/
 
 	if (info_ptr->color_type == PNG_COLOR_TYPE_PALETTE)
 	{
